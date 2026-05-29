@@ -1,0 +1,20 @@
+ADD USER Rahul
+ADD USER Neha
+ADD USER Aman
+ADD USER Sachin
+
+ADD FRIEND Rahul Neha
+ADD FRIEND Rahul Sachin
+ADD FRIEND Neha Aman
+
+LIST FRIENDS Rahul
+
+SUGGEST FRIENDS Rahul 5
+
+DEGREES OF SEPARATION Rahul Aman
+
+ADD POST Rahul "My first post"
+ADD POST Rahul "Learning AVL Trees"
+ADD POST Rahul "COL106 Assignment"
+
+OUTPUT POSTS Rahul 2
