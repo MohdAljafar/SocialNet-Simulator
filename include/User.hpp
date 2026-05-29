@@ -3,18 +3,20 @@
 
 #include <string>
 #include <vector>
+#include <unordered_set>
+using namespace std;
 
 #include "AVLTree.hpp"
 
 class User {
 public:
-    std::string username;
+    string username;
 
-    std::vector<User*> friends;
+    unordered_set<User*> friends;
 
     AVLTree posts;
 
-    explicit User(const std::string& name)
+    explicit User(const string& name)
         : username(name) {}
 };
 

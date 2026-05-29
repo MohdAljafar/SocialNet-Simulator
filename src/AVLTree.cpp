@@ -2,11 +2,7 @@
 
 #include <algorithm>
 
-AVLNode::AVLNode(
-    long long ts,
-    const std::string& text
-)
-{
+AVLNode::AVLNode(long long ts, const std::string& text){
     timestamp = ts;
     content = text;
 
@@ -16,18 +12,15 @@ AVLNode::AVLNode(
     height = 1;
 }
 
-AVLTree::AVLTree()
-{
+AVLTree::AVLTree(){
     root = nullptr;
 }
 
-AVLTree::~AVLTree()
-{
+AVLTree::~AVLTree(){
     destroyTree(root);
 }
 
-void AVLTree::destroyTree(AVLNode* node)
-{
+void AVLTree::destroyTree(AVLNode* node){
     if (!node)
         return;
 
@@ -37,13 +30,11 @@ void AVLTree::destroyTree(AVLNode* node)
     delete node;
 }
 
-int AVLTree::getHeight(AVLNode* node)
-{
+int AVLTree::getHeight(AVLNode* node){
     return node ? node->height : 0;
 }
 
-int AVLTree::getBalance(AVLNode* node)
-{
+int AVLTree::getBalance(AVLNode* node){
     if (!node)
         return 0;
 
@@ -51,8 +42,7 @@ int AVLTree::getBalance(AVLNode* node)
          - getHeight(node->right);
 }
 
-AVLNode* AVLTree::rotateRight(AVLNode* y)
-{
+AVLNode* AVLTree::rotateRight(AVLNode* y){
     AVLNode* x = y->left;
     AVLNode* T2 = x->right;
 
@@ -72,8 +62,7 @@ AVLNode* AVLTree::rotateRight(AVLNode* y)
     return x;
 }
 
-AVLNode* AVLTree::rotateLeft(AVLNode* x)
-{
+AVLNode* AVLTree::rotateLeft(AVLNode* x){
     AVLNode* y = x->right;
     AVLNode* T2 = y->left;
 
@@ -93,12 +82,7 @@ AVLNode* AVLTree::rotateLeft(AVLNode* x)
     return y;
 }
 
-AVLNode* AVLTree::insertNode(
-    AVLNode* node,
-    long long timestamp,
-    const std::string& content
-)
-{
+AVLNode* AVLTree::insertNode(AVLNode* node, long long timestamp, const std::string& content){
     if (!node)
         return new AVLNode(timestamp, content);
 
@@ -132,15 +116,13 @@ AVLNode* AVLTree::insertNode(
     }
 
     // RR
-    if (balance < -1 &&
-        timestamp > node->right->timestamp)
+    if (balance < -1 && timestamp > node->right->timestamp)
     {
         return rotateLeft(node);
     }
 
     // LR
-    if (balance > 1 &&
-        timestamp > node->left->timestamp)
+    if (balance > 1 && timestamp > node->left->timestamp)
     {
         node->left =
             rotateLeft(node->left);
@@ -149,8 +131,7 @@ AVLNode* AVLTree::insertNode(
     }
 
     // RL
-    if (balance < -1 &&
-        timestamp < node->right->timestamp)
+    if (balance < -1 && timestamp < node->right->timestamp)
     {
         node->right =
             rotateRight(node->right);
@@ -161,10 +142,7 @@ AVLNode* AVLTree::insertNode(
     return node;
 }
 
-void AVLTree::insert(
-    long long timestamp,
-    const std::string& content
-)
+void AVLTree::insert(long long timestamp, const std::string& content)
 {
     root =
         insertNode(root,
