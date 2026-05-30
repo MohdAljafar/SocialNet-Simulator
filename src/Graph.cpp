@@ -110,11 +110,6 @@ Graph::listFriends(
         );
     }
 
-    std::sort(
-        result.begin(),
-        result.end()
-    );
-
     return result;
 }
 
@@ -133,8 +128,7 @@ Graph::suggestFriends(
         return result;
     }
 
-    User* user =
-        getUser(username);
+    User* user = getUser(username);
 
     if(!user)
     {
@@ -152,25 +146,21 @@ Graph::suggestFriends(
         for(User* candidate :
             friendNode->friends)
         {
-            if(candidate == user)
-            {
-                continue;
-            }
+            if(candidate == user) continue;
+            if(user->friends.count(candidate)) continue;
 
-            if(user->friends.count(
-                candidate))
-            {
-                continue;
-            }
-
-            mutualCount[
-                candidate
-            ]++;
+            //me --- Rahul
+            //me --- Sonali
+            //me --- Khushi
+            // Ali --- Rahul
+            // Ali --- Khushi
+            // Ali --- Priya
+            // (Ali - 2 mutual)
+            mutualCount[candidate]++;
         }
     }
 
-    for(auto& entry :
-        mutualCount)
+    for(auto& entry : mutualCount)
     {
         result.push_back({
             entry.first->username,
@@ -188,19 +178,14 @@ Graph::suggestFriends(
         {
             if(a.second != b.second)
             {
-                return
-                a.second > b.second;
+                return a.second > b.second;
             }
-
-            return
-            a.first < b.first;
+            return a.first < b.first;
         }
     );
 
-    if(
-        result.size() >
-        static_cast<size_t>(N)
-    )
+    // Type of result.size() will be size_t(unsigned integer) 
+    if(result.size() > N)
     {
         result.resize(N);
     }

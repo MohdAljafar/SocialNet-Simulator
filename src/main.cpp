@@ -73,17 +73,11 @@ int main()
 
             ss >> username;
 
-            auto friends =
-                network.listFriends(
-                    username
-                );
+            auto friends = network.listFriends(username);
 
-            for(const auto& friendName
-                : friends)
+            for(const auto& friendName : friends)
             {
-                cout
-                    << friendName
-                    << endl;
+                cout << friendName << endl;
             }
         }
 
@@ -176,8 +170,7 @@ int main()
             string content =
                 line.substr(
                     firstQuote + 1,
-                    lastQuote -
-                    firstQuote - 1
+                    lastQuote - firstQuote - 1
                 );
 
             network.addPost(

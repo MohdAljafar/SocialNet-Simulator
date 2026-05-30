@@ -16,8 +16,7 @@ public:
 
     AVLTree posts;
 
-    explicit User(const string& name)
-        : username(name) {}
+    User(const string& name) : username(name) {}
 };
 
 #endif

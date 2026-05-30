@@ -9,7 +9,7 @@ A command-line social network simulator built in C++.
 - Friend Recommendations
 - Degrees of Separation
 - AVL Tree Based Post Storage
-- Reverse Chronological Post Retrieval
+- Reverse Inorder(Newest → Oldest) Post Retrieval
 
 ## Data Structures Used
 
@@ -56,6 +56,12 @@ LIST FRIENDS Rahul
 | Degrees Of Separation | O(V + E) |
 | Add Post | O(log P) |
 | Output Posts | O(N) |
+
+V = total users
+E = total friendship edges
+F = friends of a particular user
+P = posts of a particular user
+N = posts requested in OUTPUT POSTS
 
 ## Author
 
